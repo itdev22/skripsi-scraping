@@ -39,7 +39,9 @@ def scroll_to_reviews(driver):
             "//div[contains(@data-testid, 'review')]",
             "//div[contains(text(), 'Ulasan')]",
             "//div[contains(text(), 'Review')]",
-            "//section[contains(@class, 'review')]"
+            "//section[contains(@class, 'review')]",
+            "//*[@id='review-feed']/article[1]/div/p[2]/span",
+            "/html/body/div[1]/div/main/div[2]/div[1]/div/section/section/article[1]/div/p[2]/span",
         ]
         
         review_section = None
@@ -83,8 +85,6 @@ def load_more_reviews(driver):
             "//button[contains(text(), 'Selengkapnya')]",
             "//button[contains(@class, 'load-more')]",
             "//div[@id='review-feed']//button[contains(text(), 'Lihat')]",
-            "//*[@id='review-feed']/article[1]/div/p[2]/span",
-            "//div[@id='review-feed']//article//span[string-length(text()) > 5]"
         ]
         
         for selector in load_more_selectors:
@@ -151,7 +151,7 @@ def scrape_comments_from_page(driver):
     comments = []
     
     # Primary selector based on your finding
-    primary_selector = "//*[@id='review-feed']/article[9]/div/p[2]/span"
+    primary_selector = "//div[@id='review-feed']//article//span[string-length(text()) > 5]"
 
     
     # Fallback selectors in case the structure changes
@@ -163,6 +163,7 @@ def scrape_comments_from_page(driver):
         "//span[@data-testid='lblItemUlasan']",
         "//*[@id='review-feed']//article//p[2]//span",
         "//*[@id='review-feed']//article//div//p//span",
+        "//*[@id='review-feed']/article[1]/div/p[2]/span"
     ]
     
     # Try primary selector first
